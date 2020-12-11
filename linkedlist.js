@@ -10,6 +10,31 @@ function LinkedList(){
     var head = null;
     var tail = null;
 
+this.insertAt = (index,val) => {
+    if(index > length){
+        throw "Out of range!"
+    }
+    
+    
+    if (length === index){
+        this.pushBack(val);
+    }
+    else{
+        let newNode = new Node(val);
+        if(index === 0){
+            newNode.next = head;
+            head = newNode;
+        }
+        else{
+            let leftNode = this.elementAt(index - 1);
+            newNode.next = leftNode.next; 
+            leftNode.next = newNode;
+        }
+        length++;
+    }
+
+
+}
 
 
     this.pushBack = (val) =>{
@@ -30,7 +55,8 @@ function LinkedList(){
 
 this.indexOf = (val) => {
     if(length === 0){
-emptyListException();    }
+        emptyListException();    
+    }
     
     let currentNode = head;
     for(let i = 0; i < length; i++){
@@ -209,6 +235,6 @@ linkedList.pushBack("ali");
 linkedList.pushBack("veli");
 linkedList.pushBack("49");
 linkedList.pushBack("50");
-linkedList.removeByValue("50");
+linkedList.insertAt(2,"kamil");
 console.log(linkedList.toString());
 
